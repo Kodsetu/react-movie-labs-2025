@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";  
 import MovieList from "../components/movieList";
 import Grid from "@mui/material/Grid";
-import Header from '../components/headerMovieList';
+import Header from '../components/headerMovie';
 import FilterCard from "../components/filterMoviesCard";
 
 const HomePage = (props) => {
