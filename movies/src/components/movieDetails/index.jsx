@@ -8,6 +8,7 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+import MovieRecommendations from "../movieRecommendations";
 
 
 const root = {
@@ -57,6 +58,13 @@ const MovieDetails = ({ movie }) => {
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
+      <br/>
+      <Typography variant="h5" component="h3">
+        Recommended
+      </Typography>
+      <Paper component="ul" sx={{...root}}>
+        <MovieRecommendations movie={movie}/>
       </Paper>
       <Fab
         color="secondary"
