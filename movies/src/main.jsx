@@ -11,8 +11,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import UpcomingMoviesPage from './pages/upcomingMoviesPage';
-import TrendingMoviesPage from "./pages/trendingMoviesPage";
+import TrendingMoviesWeeklyPage from "./pages/trendingMoviesWeeklyPage";
 import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
+import TopRatedPage from "./pages/topRatedMoviesPage";
+import TrendingMoviesDailyPage from "./pages/trendingMoviesDailyPage";
+import MoviePlaylistPage from "./pages/moviePlaylistPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,11 +35,14 @@ const App = () => {
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            <Route path="/movies/must_watch" element={<MoviePlaylistPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             <Route path="/movies/now_playing" element={<NowPlayingMoviesPage />} />
-            <Route path="/movies/trending/this-week" element={<TrendingMoviesPage />} />
+            <Route path="/movies/trending/this-week" element={<TrendingMoviesWeeklyPage />} />
+            <Route path="/movies/trending/today" element={<TrendingMoviesDailyPage />} />
+            <Route path="/movies/top_rated" element={<TopRatedPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={ <Navigate to="/" /> } />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />

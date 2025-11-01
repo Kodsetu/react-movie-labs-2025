@@ -95,7 +95,23 @@ export const getGenres = () => {
   });
 };
 
-export const getTrendingMovies = () => {
+export const getTrendingMoviesWeekly = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/trending/movie/day?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+  .catch((error) => {
+      throw error
+  });
+};
+
+export const getTrendingMoviesDaily = () => {
   return fetch(
     `https://api.themoviedb.org/3/trending/movie/week?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
   ).then((response) => {
@@ -159,4 +175,40 @@ export const getProviders = () => {
   .catch((error) => {
       throw error
   });
+};
+
+export const getTopRatedMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+  .catch((error) => {
+      throw error
+  });
+};
+
+export const getMovieCast = ({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then( (response) => 
+        response.json().then(data => {
+          if(!response.ok){
+            throw new Error(data.status_message || "Something went wrong");
+          }
+          return data.cast || [];
+        }
+      )
+    )
+    .catch((error) => {
+      throw error
+   }
+  );
 };

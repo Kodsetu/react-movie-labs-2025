@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import MovieRecommendations from "../movieRecommendations";
+import MovieCast from "../movieCast";
 
 
 const root = {
@@ -58,6 +59,13 @@ const MovieDetails = ({ movie }) => {
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
+      <br/>
+      <Typography variant="h5" component="h3">
+        Cast
+      </Typography>
+      <Paper component="ul" sx={{...root}}>
+        <MovieCast movie = {movie}/>
       </Paper>
       <br/>
       <Typography variant="h5" component="h3">
