@@ -9,6 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
+import Paper from "@mui/material/Paper";
 
 
 const ratings = [
@@ -40,6 +41,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "left",
+    color: "white",
   },
   form: {
     width: "100%",
@@ -49,9 +51,6 @@ const styles = {
   },
   textField: {
     width: "40ch",
-  },
-  submit: {
-    marginRight: 2,
   },
   snack: {
     width: "50%",
@@ -103,127 +102,140 @@ const ReviewForm = ({ movie }) => {
       <Typography component="h2" variant="h3">
         Write a review
       </Typography>
-
-      <Snackbar
-        sx={styles.snack}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={open}
-        onClose={handleSnackClose}
-      >
-        <MuiAlert
-          severity="success"
-          variant="filled"
+      <Paper sx={{backgroundColor:"#0f0f0f", color:"white"}}>
+        <Snackbar
+          sx={styles.snack}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          open={open}
           onClose={handleSnackClose}
         >
-          <Typography variant="h4">
-            Thank you for submitting a review
-          </Typography>
-        </MuiAlert>
-      </Snackbar>
-
-      <form sx={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Controller
-          name="author"
-          control={control}
-          rules={{ required: "Name is required" }}
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextField
-              sx={{ width: "40ch" }}
-              variant="outlined"
-              margin="normal"
-              required
-              onChange={onChange}
-              value={value}
-              id="author"
-              label="Author's name"
-              name="author"
-              autoFocus
-            />
-          )}
-        />
-        {errors.author && (
-          <Typography variant="h6" component="p">
-            {errors.author.message}
-          </Typography>
-        )}
-        <Controller
-          name="review"
-          control={control}
-          rules={{
-            required: "Review cannot be empty.",
-            minLength: { value: 10, message: "Review is too short" },
-          }}
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="review"
-              value={value}
-              onChange={onChange}
-              label="Review text"
-              id="review"
-              multiline
-              minRows={10}
-            />
-          )}
-        />
-        {errors.review && (
-          <Typography variant="h6" component="p">
-            {errors.review.message}
-          </Typography>
-        )}
-
-        <Controller
-          control={control}
-          name="rating"
-          render={({ field: { onChange, value } }) => (
-            <TextField
-              id="select-rating"
-              select
-              variant="outlined"
-              label="Rating Select"
-              value={rating}
-              onChange={handleRatingChange}
-              helperText="Don't forget your rating"
-            >
-              {ratings.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          )}
-        />
-
-        <Box sx={styles.buttons}>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={styles.submit}
+          <MuiAlert
+            severity="success"
+            variant="filled"
+            onClose={handleSnackClose}
           >
-            Submit
-          </Button>
-          <Button
-            type="reset"
-            variant="contained"
-            color="secondary"
-            sx={styles.submit}
-            onClick={() => {
-              reset({
-                author: "",
-                content: "",
-              });
+            <Typography variant="h4">
+              Thank you for submitting a review
+            </Typography>
+          </MuiAlert>
+        </Snackbar>
+
+        <form sx={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Controller
+            name="author"
+            control={control}
+            rules={{ required: "Name is required" }}
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                sx={{ 
+                  width: "40ch",
+                  input: {color:"white"},
+                  label: {color:"white"}
+                }}
+                variant="outlined"
+                margin="normal"
+                required
+                onChange={onChange}
+                value={value}
+                id="author"
+                label="Author's name"
+                name="author"
+                autoFocus
+              />
+            )}
+          />
+          {errors.author && (
+            <Typography variant="h6" component="p">
+              {errors.author.message}
+            </Typography>
+          )}
+          <Controller
+            name="review"
+            control={control}
+            rules={{
+              required: "Review cannot be empty.",
+              minLength: { value: 10, message: "Review is too short" },
             }}
-          >
-            Reset
-          </Button>
-        </Box>
-      </form>
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                sx={{
+                  "& .MuiInputBase-inputMultiline": {color:"white"},
+                  label: {color:"white"}
+                }}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="review"
+                value={value}
+                onChange={onChange}
+                label="Review text"
+                id="review"
+                multiline
+                minRows={10}
+              />
+            )}
+          />
+          {errors.review && (
+            <Typography variant="h6" component="p">
+              {errors.review.message}
+            </Typography>
+          )}
+
+          <Controller
+            control={control}
+            name="rating"
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                sx={{
+                  "& .MuiInputBase-input": {color:"white"},
+                  "& .MuiFormHelperText-root":{color:"white"},
+                  label: {color:"white"},
+                  "& .MuiSvgIcon-root": { color: "white" },
+                }}
+                id="select-rating"
+                select
+                variant="outlined"
+                label="Rating Select"
+                value={rating}
+                onChange={handleRatingChange}
+                helperText="Don't forget your rating"
+              >
+                {ratings.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            )}
+          />
+
+          <Box>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{backgroundColor:"lightgreen", color:"black"}}
+            >
+              Submit
+            </Button>
+            <Button
+              type="reset"
+              variant="contained"
+              sx={{backgroundColor:"red", color:"black"}}
+              onClick={() => {
+                reset({
+                  author: "",
+                  content: "",
+                });
+              }}
+            >
+              Reset
+            </Button>
+          </Box>
+        </form>
+      </Paper>
     </Box>
   );
 };

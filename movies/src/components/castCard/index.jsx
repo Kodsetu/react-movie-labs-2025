@@ -14,7 +14,8 @@ export default function CastCard({ cast, action }) {
 
   return (
     <Card>
-      <CardHeader
+      <CardHeader 
+        sx={{backgroundColor:"lightblue"}}
         title={
           <Typography variant="h5" component="p">
             {cast.name}{" "}
@@ -29,7 +30,8 @@ export default function CastCard({ cast, action }) {
             : img
         }
       />
-      <CardContent>
+      <CardContent
+        sx={{backgroundColor:"lightblue"}}>
         <Grid container>
           <Grid size={{xs: 10}}>
             <Typography variant="h6" component="p">

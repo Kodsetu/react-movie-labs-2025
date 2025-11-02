@@ -13,9 +13,9 @@ const AddToFavoritesIcon = ({ movie }) => {
 
   return (
     <IconButton aria-label="add to favorites" onClick={handleAddToFavorites}>
-      <FavoriteIcon color="primary" fontSize="large" />
+      <FavoriteIcon fontSize="large" sx={{color:"red"}}/>
     </IconButton>
-  );
+  );r
 };
 
 export default AddToFavoritesIcon;

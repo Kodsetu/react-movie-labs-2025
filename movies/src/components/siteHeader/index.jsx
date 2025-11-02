@@ -46,15 +46,14 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" sx={{backgroundColor:"#111140"}}>
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
-          </Typography>
-            {isMobile ? (
+          </Typography>           
               <>
                 <IconButton
                   aria-label="menu"
@@ -90,19 +89,6 @@ const SiteHeader = () => {
                   ))}
                 </Menu>
               </>
-            ) : (
-              <>
-                {menuOptions.map((opt) => (
-                  <Button
-                    key={opt.label}
-                    color="inherit"
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </Button>
-                ))}
-              </>
-            )}
         </Toolbar>
       </AppBar>
       <Offset />

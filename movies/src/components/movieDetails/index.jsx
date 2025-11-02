@@ -10,6 +10,7 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import MovieRecommendations from "../movieRecommendations";
 import MovieCast from "../movieCast";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 
 
 const root = {
@@ -19,56 +20,59 @@ const root = {
     listStyle: "none",
     padding: 1.5,
     margin: 0,
+    backgroundColor: "#0f0f0f",
 };
-const chip = { margin: 0.5 };
+
 
 const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" color="white">
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography variant="h6" component="p" color="white">
         {movie.overview}
       </Typography>
 
-      <Paper 
+      <Paper  
         component="ul" 
         sx={{...root}}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" sx={{backgroundColor:"red", margin: 0.5,  color: "white"}} />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name} sx={{backgroundColor:"lightblue", margin: 0.5,}} />
           </li>
         ))}
       </Paper>
       <Paper component="ul" sx={{...root}}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} sx={{backgroundColor:"lightblue", margin: 0.5,}}/>
         <Chip
           icon={<MonetizationIcon />}
           label={`${movie.revenue.toLocaleString()}`}
+          sx={{backgroundColor:"lightblue", margin: 0.5,}}
         />
         <Chip
           icon={<StarRate />}
           label={`${movie.vote_average} (${movie.vote_count})`}
+          sx={{backgroundColor:"lightblue", margin: 0.5,}}
         />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <Chip icon={<CalendarIcon />} label={`${movie.release_date}`} sx={{backgroundColor:"lightblue", margin: 0.5,}}/>
       </Paper>
       <br/>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" color="white">
         Cast
       </Typography>
       <Paper component="ul" sx={{...root}}>
         <MovieCast movie = {movie}/>
       </Paper>
       <br/>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" color="white">
         Recommended
       </Typography>
       <Paper component="ul" sx={{...root}}>

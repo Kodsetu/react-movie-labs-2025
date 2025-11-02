@@ -15,7 +15,7 @@ const RemoveFromPlaylistIcon = ({ movie }) => {
       aria-label="remove from playlist"
       onClick={handleRemoveFromPlaylist}
     >
-      <DeleteIcon color="primary" fontSize="large" />
+      <DeleteIcon fontSize="large" sx={{color:"lightblue"}}/>
     </IconButton>
   );
 };
