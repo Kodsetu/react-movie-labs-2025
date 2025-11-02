@@ -43,6 +43,7 @@ export default function MovieCard({ movie, action }) {
   return (
     <Card>
       <CardHeader
+        sx={{backgroundColor:"#0f0f0f", color:"white"}}
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
@@ -64,7 +65,8 @@ export default function MovieCard({ movie, action }) {
             : img
         }
       />
-      <CardContent>
+      <CardContent
+        sx={{backgroundColor:"#0f0f0f", color:"white"}}>
         <Grid container>
           <Grid size={{xs: 7}}>
             <Typography variant="h6" component="p">
@@ -80,12 +82,13 @@ export default function MovieCard({ movie, action }) {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing
+      sx={{backgroundColor:"#0f0f0f"}}>
       
         {action(movie)}
       
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
+          <Button variant="outlined" size="medium" sx={{color:"lightblue"}}>
             More Info ...
           </Button>
         </Link>

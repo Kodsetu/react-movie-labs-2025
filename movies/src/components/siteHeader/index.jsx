@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { last } from "lodash";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -26,8 +27,12 @@ const SiteHeader = () => {
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
+    { label: "Must Watch", path: "/movies/must_watch" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Trending", path: "/movies/trending/this-week" },
+    { label: "Weekly", path: "/movies/trending/this-week" },
+    { label: "Daily", path: "/movies/trending/today" },
+    { label: "In Theatre", path: "/movies/now_playing" },
+    { label: "Top Rated", path: "/movies/top_rated"},
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -41,15 +46,14 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" sx={{backgroundColor:"#111140"}}>
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
-          </Typography>
-            {isMobile ? (
+          </Typography>           
               <>
                 <IconButton
                   aria-label="menu"
@@ -85,19 +89,6 @@ const SiteHeader = () => {
                   ))}
                 </Menu>
               </>
-            ) : (
-              <>
-                {menuOptions.map((opt) => (
-                  <Button
-                    key={opt.label}
-                    color="inherit"
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </Button>
-                ))}
-              </>
-            )}
         </Toolbar>
       </AppBar>
       <Offset />
